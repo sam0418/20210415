@@ -1,0 +1,15 @@
+from pwn import *
+ip = '120.114.62.214'
+port = 2400
+
+r = remote(ip,port)
+
+r.recvuntil("Now You Turn")
+r.recvuntil(" : ")
+res = r.recvline()[:-1]
+res = list(map(int, res.split()))
+res.sort()
+print(res[-3])
+
+
+r.interactive()
